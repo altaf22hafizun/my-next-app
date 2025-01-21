@@ -15,7 +15,7 @@ const DetailProductPage = ({ product }: { product: ProductType }) => {
       {/* Client Side */}
       {/* <DetailProduct product={isLoading ? [] : data.data} /> */}
 
-      {/* Server Side */}
+      {/* Server Side & Static side */}
       <DetailProduct product={product} />
 
       {/* Static */}
