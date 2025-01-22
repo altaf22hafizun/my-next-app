@@ -27,6 +27,7 @@ const ProductPage = () => {
 
   return (
     <div>
+      <title>Product</title>
       <ProductView products={isLoading ? [] : data.data} />
     </div>
   );

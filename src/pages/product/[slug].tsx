@@ -12,6 +12,7 @@ const DetailProductPage = ({ product }: { product: ProductType }) => {
 
   return (
     <div>
+      <title>Detail Product</title>
       {/* Client Side */}
       {/* <DetailProduct product={isLoading ? [] : data.data} /> */}
 

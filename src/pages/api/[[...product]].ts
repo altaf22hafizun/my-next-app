@@ -9,6 +9,7 @@ type Data = {
   data: any;
 };
 
+// Karna kita butuh await maka asycn function
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   if (req.query.product![1]) {
     const data = await retrieveDataById("products", req.query.product![1]);
