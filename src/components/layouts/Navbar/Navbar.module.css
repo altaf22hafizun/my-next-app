@@ -9,15 +9,25 @@
   justify-content: space-between;
 }
 
-.button{
-background-color: #fff;
-padding: 10px;
-color: #000;
-margin: 0 15px;
-border-radius: 12px;
+.link {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
 }
 
-.button:hover{
-background-color: #000;
-color: #fff;
+.link:hover {
+  color: #23bebe;
+}
+
+.button {
+  background-color: #fff;
+  padding: 10px;
+  color: #000;
+  margin: 0 15px;
+  border-radius: 12px;
+}
+
+.button:hover {
+  background-color: #000;
+  color: #fff;
 }
