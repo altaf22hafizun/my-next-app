@@ -3,6 +3,9 @@ import styles from "@/views/auth/login/Login.module.scss";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { FileWarning, LucideMessageSquareWarning, MailWarning, ShieldClose, Terminal } from "lucide-react";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 
 const LoginView = () => {
   // karna ada loading jadi kita buat state
@@ -27,13 +30,13 @@ const LoginView = () => {
       });
 
       if (!res?.error) {
-       setIsLoading(false);
-       push(callbackUrl);
-      }else{
+        setIsLoading(false);
+        push(callbackUrl);
+      } else {
         setIsLoading(false);
         setError("Email atau password salah");
       }
-    } catch (error : any) {
+    } catch (error: any) {
       setIsLoading(false);
       setError("Email atau password salah");
     }
@@ -41,7 +44,15 @@ const LoginView = () => {
   return (
     <div className={styles.login}>
       <h1 className={styles.login__title}>Login</h1>
-      {error && <p className={styles.login__error}>{error}</p>}
+      {error && (
+        <Alert className="bg-red-500 text-white w-4/12">
+          <ShieldClose />
+          <AlertTitle>Error</AlertTitle>
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
+
+      {/* {error && <p className={styles.login__error}>{error}</p>} */}
       <div className={styles.login__form}>
         <form onSubmit={handleSubmit}>
           <div className={styles.login__form__item}>
