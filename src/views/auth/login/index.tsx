@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { FileWarning, LucideMessageSquareWarning, MailWarning, ShieldClose, Terminal } from "lucide-react";
-import { ErrorBoundary } from "next/dist/client/components/error-boundary";
+import { ShieldClose, XCircle } from "lucide-react";
 
 const LoginView = () => {
   // karna ada loading jadi kita buat state
@@ -21,10 +20,20 @@ const LoginView = () => {
     setError("");
     setIsLoading(true);
 
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    // Validasi email dan password (harus diisi)
+    if (!email || !password) {
+      setIsLoading(false);
+      setError("Email dan password harus diisi.");
+      return;
+    }
+
     try {
       const res = await signIn("credentials", {
-        email: event.target.email.value,
-        password: event.target.password.value,
+        email,
+        password,
         redirect: false,
         callbackUrl: "/",
       });
@@ -41,6 +50,10 @@ const LoginView = () => {
       setError("Email atau password salah");
     }
   };
+  // Fungsi untuk menutup pesan error
+  const closeError = () => {
+    setError("");
+  };
   return (
     <div className={styles.login}>
       <h1 className={styles.login__title}>Login</h1>
@@ -49,6 +62,9 @@ const LoginView = () => {
           <ShieldClose />
           <AlertTitle>Error</AlertTitle>
           <AlertDescription>{error}</AlertDescription>
+          <button onClick={closeError} className="absolute top-5 right-2 text-white">
+            <XCircle size={24} />
+          </button>
         </Alert>
       )}
 

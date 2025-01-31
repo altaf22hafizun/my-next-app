@@ -2,6 +2,8 @@ import Link from "next/link";
 import styles from "@/views/auth/register/Register.module.scss";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { ShieldClose, XCircle } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 const RegisterView = () => {
   // karna ada loading jadi kita buat state
@@ -15,10 +17,22 @@ const RegisterView = () => {
     event.preventDefault();
     setError("");
     setIsLoading(true);
+
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    const fullname = event.target.fullname.value;
+
+    // Validasi harus diisi
+    if (!email || !password || !fullname) {
+      setIsLoading(false);
+      setError("Email,password dan fullname harus diisi.");
+      return;
+    }
+
     const data = {
-      fullname: event.target.fullname.value,
-      email: event.target.email.value,
-      password: event.target.password.value,
+      fullname,
+      email,
+      password,
     };
     const result = await fetch("/api/register", {
       method: "POST",
@@ -36,10 +50,25 @@ const RegisterView = () => {
       setError(result.status === 400 ? "Email sudah terdaftar" : "");
     }
   };
+
+  // Fungsi untuk menutup pesan error
+  const closeError = () => {
+    setError("");
+  };
   return (
     <div className={styles.register}>
       <h1 className={styles.register__title}>Register</h1>
-      {error && <p className={styles.register__error}>{error}</p>}
+      {error && (
+        <Alert className="bg-red-500 text-white w-4/12">
+          <ShieldClose />
+          <AlertTitle>Error</AlertTitle>
+          <AlertDescription>{error}</AlertDescription>
+          <button onClick={closeError} className="absolute top-5 right-2 text-white">
+            <XCircle size={24} />
+          </button>
+        </Alert>
+      )}
+      {/* {error && <p className={styles.register__error}>{error}</p>} */}
       <div className={styles.register__form}>
         <form onSubmit={handleSubmit}>
           <div className={styles.register__form__item}>

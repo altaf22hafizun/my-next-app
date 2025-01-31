@@ -5,11 +5,13 @@
   flex-direction: column;
   height: 100vh;
   width: 100vw;
+
   &__title {
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 20px;
   }
+
   &__error {
     width: 30%;
     text-align: center;
@@ -19,21 +21,34 @@
     border-radius: 20px;
     padding: 10px;
     background-color: red;
+
+    @media (max-width: 768px) {
+      width: 80%; 
+    }
   }
+
   &__form {
     width: 30%;
     padding: 20px;
     box-shadow: 0 0 3px rgba($color: #000000, $alpha: 0.5);
     margin-top: 20px;
     margin-bottom: 20px;
+
+    @media (max-width: 768px) {
+      width: 80%; 
+      padding: 15px;
+    }
+
     &__item {
       display: flex;
       flex-direction: column;
       margin: 10px;
+
       &__label {
         display: block;
         margin-bottom: 5px;
       }
+
       &__input {
         background-color: #eee;
         display: block;
@@ -44,6 +59,7 @@
         margin-top: 5px;
       }
     }
+
     &__button {
       width: 100%;
       background-color: #000000;
@@ -53,18 +69,57 @@
       border-radius: 10px;
       margin-top: 10px;
       cursor: pointer;
+
       &:hover {
         background-color: #000000;
       }
     }
   }
+
   &__link {
+    margin-top: 20px;
+
     a {
       font-weight: bold;
       color: #23bebe;
+
       &:hover {
         color: #249494;
       }
+    }
+  }
+
+  /* Media Queries untuk layar lebih kecil (max-width: 768px) */
+  @media (max-width: 768px) {
+    &__title {
+      font-size: 28px;
+    }
+
+    &__form {
+      width: 90%; 
+    }
+
+    &__link {
+      font-size: 14px;
+    }
+  }
+
+  /* Media Queries untuk layar sangat kecil (max-width: 480px) */
+  @media (max-width: 480px) {
+    &__title {
+      font-size: 24px;
+    }
+
+    &__form {
+      width: 95%; 
+    }
+
+    &__button {
+      padding: 12px; 
+    }
+
+    &__link {
+      font-size: 12px;
     }
   }
 }

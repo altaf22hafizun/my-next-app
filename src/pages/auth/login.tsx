@@ -1,9 +1,12 @@
 import LoginViews from "@/views/auth/login";
+import Head from "next/head";
 
 const LoginPage = () => {
   return (
     <>
-      <title>Login</title>
+      <Head>
+        <title>Login</title>
+      </Head>
       <LoginViews />
     </>
   );

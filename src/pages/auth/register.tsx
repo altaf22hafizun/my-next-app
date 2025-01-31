@@ -1,10 +1,13 @@
 import RegisterView from "@/views/auth/register/register";
+import Head from "next/head";
 import Link from "next/link";
 
 const RegisterPage = () => {
   return (
     <>
-      <title>Register</title>
+      <Head>
+        <title>Register</title>
+      </Head>
       <RegisterView />
     </>
   );
