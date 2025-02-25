@@ -18,7 +18,7 @@ const LoginView = () => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     setError("");
-    setIsLoading(true);
+    setIsLoading(truee);
 
     const email = event.target.email.value;
     const password = event.target.password.value;
